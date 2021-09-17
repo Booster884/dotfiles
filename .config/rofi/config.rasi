@@ -1,0 +1,6 @@
+configuration {
+	modi: "window";
+	theme: "booster";
+	display-drun: "Apps";
+	display-window: "Windows";
+}

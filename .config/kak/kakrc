@@ -1,0 +1,41 @@
+colorscheme boundary
+
+# Use hard tabs (4 columns wide)
+set-option global tabstop 4
+set-option global indentwidth 0
+set-option global ui_options ncurses_assistant=none
+# add-highlighter global/ show-whitespaces
+add-highlighter global/ show-matching
+add-highlighter global/ number-lines -hlcursor -min-digits 3
+
+# Backspace, delete and enter work in normal mode
+map global normal <backspace> 'h<a-d>'
+map global normal <ret> 'i<ret><esc>'
+map global normal <del> '<a-d>'
+
+# Use c-v to paste in insert mode
+map global insert <c-p> '<esc>: paste-before<ret>i'
+
+# Default user leader is ,
+map global user c ': comment-line<ret>' -docstring 'comment line'
+
+# Paste
+map global normal P ': paste-after<ret>'
+map global normal p ': paste-before<ret>'
+ 
+define-command -hidden paste-after %{
+	execute-keys <a-!> %sh{
+		printf 'xclip -o -selection clipboard'
+	} <ret>
+}
+
+define-command -hidden paste-before %{
+	execute-keys ! %sh{
+		printf 'xclip -o -selection clipboard'
+	} <ret>
+}
+
+# Copy
+hook global RegisterModified '"' %{nop %sh{
+	printf %s "$kak_main_reg_dquote" | xclip -in -selection clipboard >&- 2>&-
+}}

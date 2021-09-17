@@ -1,0 +1,46 @@
+[settings]
+	screenchange-reload = true
+
+[colors]
+	black = #0b0b0e
+	gray = #2e303e
+	white = #fdf0ed
+
+	blue = #25b2bc
+	red = #f43e5c 
+
+[bar/mybar]
+	bottom = true
+	dock = false
+	width = 100%
+	height = 14px
+	padding-right = 1px
+
+	font-0 = "JetBrainsMono:size=9;3"
+	background = ${colors.black}
+	foreground = ${colors.white}
+
+	modules-left = i3
+	modules-center = time
+	modules-right = 
+
+[module/time]
+	type = internal/date
+	# date = %H:%M%
+	date = %a %e %b - %H:%M%
+
+[module/i3]
+	type = internal/i3
+	enable-click = false
+	pin-workspaces = true
+
+	format = <label-state>
+
+	label-focused = " %index% "
+	label-focused-background = ${colors.blue}
+	label-focused-foreground = ${colors.black}
+
+	label-unfocused = " %index% "
+
+	label-urgent = " %index% "
+	label-urgent-background = ${colors.red}
