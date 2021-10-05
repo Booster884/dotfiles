@@ -7,7 +7,8 @@
 	white = #fdf0ed
 
 	blue = #25b2bc
-	red = #f43e5c 
+	red = #f43e5c
+	green = #27d796
 
 [bar/mybar]
 	bottom = true
@@ -16,13 +17,13 @@
 	height = 14px
 	padding-right = 1px
 
-	font-0 = "JetBrainsMono:size=9;3"
+	font-0 = "JetBrains Mono:size=9;2"
 	background = ${colors.black}
 	foreground = ${colors.white}
 
 	modules-left = i3
 	modules-center = time
-	modules-right = 
+	modules-right = battery
 
 [module/time]
 	type = internal/date
@@ -44,3 +45,8 @@
 
 	label-urgent = " %index% "
 	label-urgent-background = ${colors.red}
+
+[module/battery]
+	type = internal/battery
+
+	label-charging-foreground = ${colors.green}

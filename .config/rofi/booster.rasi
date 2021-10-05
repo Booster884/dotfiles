@@ -1,9 +1,7 @@
-/* todo: literally everything. */
-
 configuration {
     lines: 10;
     columns: 2;
-    font: "JetbrainsMono 10";
+    font: "JetBrains Mono 10";
 }
 
 @import "horizon.rasi"
@@ -13,9 +11,22 @@ configuration {
 }
 
 window {
-    border: 1px;
+    background-color: @bg;
+	border: 1px;
     border-color: @ac;
     padding: 10px;
+}
+
+mainbox {
+    border: 0px;
+    padding: 6px;
+	background-color: @bg;
+}
+
+message {
+	border: 1px;
+	border-color: @ac;
+	padding: 4px;
 }
 
 prompt {
@@ -26,7 +37,7 @@ prompt {
 
 textbox-prompt-colon {
     expand: false;
-    str: ": ";
+    str: ":";
     margin:	0px 4px 0px 0px;
     text-color: @ac;
 }
@@ -46,71 +57,41 @@ inputbar {
     border-color: @ac;
     spacing: 0px;
     text-color: @fg;
-    padding: 5px;
-    children: [ prompt,textbox-prompt-colon,entry,case-indicator ];
+	padding: 5px;
+	children: [ prompt, textbox-prompt-colon, entry, case-indicator ];
 }
 
-mainbox {
-    border: 						0px;
-    border-color: 					@ac;
-    padding: 						6;
-}
 
 listview {
-    fixed-height: 					0;
-    border: 						0px;
-    border-color: 					@ac;
-    spacing: 						4px;
-    scrollbar: 						false;
-    padding: 						10px 0px 0px;
-}
+    fixed-height: 0;
+    border: 0px;
+    border-color: @ac;
+    spacing: 4px;
+    scrollbar: false;
+    padding: 10px 0px 0px;}
 
 element {
     border: 0px;
     padding: 1px;
 }
 
-element normal.normal {
+// whoa nice one
+element-text, element-icon {
+	background-color: inherit;
+	text-color: inherit;
+}
+
+element normal {
     background-color: @bg;
     text-color: @fg;
 }
 
-element normal.active {
-    background-color: @bg;
-    text-color: @green;
-}
-
-element normal.urgent {
-    background-color: @bg;
-    text-color: @red;
-}
-
-element selected.normal {
+element selected {
     background-color: @ac;
     text-color: @bg;
 }
 
-element selected.active {
-    background-color: @ac;
-    text-color: @bg;
-}
-
-element selected.urgent {
-    background-color: @ac;
-    text-color: @bg;
-}
-
-element alternate.normal {
+element alternate {
     background-color: @bg;
     text-color: @fg;
-}
-
-element alternate.active {
-    background-color: @bg;
-    text-color: @fg;
-}
-
-element alternate.urgent {
-    background-color: @bg;
-    text-color: @red;
 }
