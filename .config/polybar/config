@@ -17,7 +17,7 @@
 	height = 14px
 	padding-right = 1px
 
-	font-0 = "JetBrains Mono:size=9;2"
+	font-0 = "JetBrainsMono:size=9;2"
 	background = ${colors.black}
 	foreground = ${colors.white}
 
@@ -50,3 +50,8 @@
 	type = internal/battery
 
 	label-charging-foreground = ${colors.green}
+
+[module/mpris]
+	type = custom/script
+	exec = ~/.config/polybar/mpris.sh
+	interval = 3

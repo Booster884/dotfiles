@@ -13,7 +13,7 @@ gaps outer 0
 # Config for xss-lock, nm-applet and pactl was here, you might want to add these at some point.
 
 # Start a terminal
-bindsym $mod+Return exec xterm
+bindsym $mod+Return exec alacritty
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -21,6 +21,7 @@ bindsym $mod+Shift+q kill
 # Program launcer (rofi)
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+t exec rofi -show window
+bindsym $mod+Shift+e exec rofi -show powermenu -modi powermenu:~/.config/rofi/rofi-power-menu
 
 # Screenshots?
 
@@ -104,9 +105,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# Exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec rofi -show powermenu -modi powermenu:~/.config/rofi/rofi-power-menu
 
 # Resize window (you can also use the mouse for that)
 mode "resize" {
@@ -125,17 +123,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#         status_command i3status
-# }
-
 # Autostart programs
 
 # Set wallpaper
-# exec xsetroot -solid "#2D7D9A"
-exec xwallpaper --zoom ~/media/wallpapers/autumn.jpg
+exec sh ~/.fehbg &
 
 # Start polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+exec xrdb .Xhorizon
+
+# Launch commonly used programs
+bindsym $mod+F2 exec firefox
+bindsym $mod+Shift+F2 exec firefox --private-window

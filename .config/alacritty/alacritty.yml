@@ -1,0 +1,34 @@
+window:
+  padding:
+    x: 2
+    y: 2
+
+font:
+  normal:
+    family: JetbrainsMono
+  size: 7.0
+
+colors:
+  primary:
+    background: '0x0b0b0e'
+    foreground: '0xfdf0ed'
+  normal:
+    black: '0x0b0b0e'
+    red: '0xf43e5c'
+    green: '0x27d796'
+    yellow: '0xfac29a'
+    blue: '0x6c6f93'
+    magenta: '0xde87bc'
+    cyan: '0x25b2bc'
+    white: '0xfdf0ed'
+  bright:
+    black: '0x1c1e26'
+    red: '0xf43e5c'
+    green: '0x27d796'
+    yellow: '0xfac29a'
+    blue: '0x6c6f93'
+    magenta: '0xde87bc'
+    cyan: '0x25b2bc'
+    white: '0x2e303e'
+
+background-opacity: 0.0

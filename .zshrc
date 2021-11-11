@@ -1,11 +1,8 @@
-export ZSH="/home/booster/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
+export PROMPT="%1~ %(?.%F{2}.%F{1})>%f "
 
-# Plugins
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
+export TERMINAL="alacritty"
+export BROWSER="firefox"
 
-# Exports
-
-# Aliases
 alias dotfiles="git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME"
+alias py="python"
+alias ls="exa"
