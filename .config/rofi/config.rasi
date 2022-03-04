@@ -1,6 +1,11 @@
 configuration {
 	modi: "window";
-	theme: "booster";
 	display-drun: "Apps";
 	display-window: "Windows";
+
+    lines: 10;
+    columns: 2;
+    font: "JetBrainsMono 10";
 }
+
+@theme "booster"

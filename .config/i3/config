@@ -1,5 +1,5 @@
 # Use the alt key as the modifier key
-set $mod Mod1
+set $mod Mod4
 
 # Font, primarily for window titles.
 # font pango:DejaVuSans 8
