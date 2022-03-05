@@ -11,6 +11,7 @@
 	green = #27d796
 
 [bar/mybar]
+	monitor = ${env:MONITOR:}
 	bottom = true
 	dock = false
 	width = 100%

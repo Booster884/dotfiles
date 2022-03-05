@@ -6,7 +6,7 @@ window:
 font:
   normal:
     family: JetbrainsMono
-  size: 7.0
+  size: 10.0
 
 colors:
   primary:

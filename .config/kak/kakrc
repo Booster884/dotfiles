@@ -25,17 +25,30 @@ map global normal p ': paste-before<ret>'
  
 define-command -hidden paste-after %{
 	execute-keys <a-!> %sh{
-		printf 'xclip -o -selection clipboard'
+		if [ -n "$WAYLAND_DISPLAY" ] && exists wl-paste; then
+			printf 'wl-paste --no-newline'
+		else
+			printf 'xclip -o -selection clipboard'
+		fi
 	} <ret>
 }
 
 define-command -hidden paste-before %{
 	execute-keys ! %sh{
-		printf 'xclip -o -selection clipboard'
+		if [ -n "$WAYLAND_DISPLAY" ] && exists wl-paste; then
+			printf 'wl-paste --no-newline'
+		else
+			printf 'xclip -o -selection clipboard'
+		fi
 	} <ret>
 }
 
 # Copy
 hook global RegisterModified '"' %{nop %sh{
-	printf %s "$kak_main_reg_dquote" | xclip -in -selection clipboard >&- 2>&-
+	if [ -n "$WAYLAND_DISPLAY" ] && exists wl-paste; then
+		printf %s "$kak_main_reg_dquote" | wl-copy --foreground >&- 2>&-
+	else
+		printf %s "$kak_main_reg_dquote" | xclip -in -selection clipboard >&- 2>&-
+	fi
+
 }}
