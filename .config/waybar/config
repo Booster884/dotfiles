@@ -36,8 +36,8 @@
         "states": {
             "warning": 20
         },
-        "format": "{capacity}% {icon}",
-        "format-alt": "{time} {icon}",
+        "format": "{capacity}%",
+        "format-alt": "{time}",
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -63,7 +63,7 @@
     },
     "custom/media": {
         "format": "{}",
-	"interval": 1,
+        "interval": 1,
         "return-type": "json",
         "max-length": 40,
         "escape": true,

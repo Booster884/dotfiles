@@ -10,14 +10,17 @@ return require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"
 	
 	use "rafi/awesome-vim-colorschemes"
-
+	use "lukas-reineke/indent-blankline.nvim"
+	use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+	use {"akinsho/toggleterm.nvim"}
+	
 	use "tpope/vim-commentary"
 	
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-    
+	
 	-- Install packer packages on bootstrap
     if packer_boostrap then
 		require("packer").sync()

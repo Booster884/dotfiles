@@ -6,7 +6,7 @@ export EDITOR="nvim"
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME"
 alias py="python"
+alias vim="nvim"
 alias ls="exa --group-directories-first"
-
 
 export HISTFILE=/dev/null

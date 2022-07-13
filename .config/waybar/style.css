@@ -38,13 +38,13 @@ window#waybar {
 #tray,
 #memory,
 #mode {
-	padding: 0 2px;
-	margin: 0 4px;
+	padding: 0 4px;
+	margin: 0 2px;
 	color: #fdf0ed;
 }
 
 #battery {
-	background-color: #25b2bc;
+	background-color: #2e303e;
 }
 
 #battery.charging {
@@ -52,7 +52,7 @@ window#waybar {
 	color: #0b0b0e;
 }
 
-#battery.warning:not(charging) {
+#battery.warning:not(.charging) {
 	background-color: #f4335c;
 	color: #0b0b0e;
 }
