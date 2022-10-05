@@ -13,6 +13,13 @@ return require("packer").startup(function(use)
 	use "lukas-reineke/indent-blankline.nvim"
 	use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 	use {"akinsho/toggleterm.nvim"}
+	use "gpanders/editorconfig.nvim"
+
+	use "neovim/nvim-lspconfig"
+	use "hrsh7th/cmp-vsnip"
+	use "hrsh7th/vim-vsnip"
+	use "hrsh7th/cmp-nvim-lsp"
+	use "hrsh7th/nvim-cmp"
 	
 	use "tpope/vim-commentary"
 	
@@ -21,6 +28,7 @@ return require("packer").startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 	
+
 	-- Install packer packages on bootstrap
     if packer_boostrap then
 		require("packer").sync()

@@ -24,7 +24,7 @@ gaps outer 0
 
 ### Output configuration
 #
-output * bg ~/wallpaper fill
+# output * bg ~/wallpaper fill
 
 output DP-2 resolution 1920x1080 position 1920 0
 output DP-3 resolution 1920x1080 position 0 0
@@ -37,7 +37,7 @@ set $lock swaylock -f -c 121212 -i ~/wallpaper
 exec swayidle -w \
     timeout 300 $lock \
     timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-	before-sleep $lock
+	before-sleep $lock; sleep 1
 
 bindswitch --reload --locked lid:on exec $lock
 

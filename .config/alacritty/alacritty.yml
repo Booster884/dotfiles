@@ -5,7 +5,7 @@ window:
 
 font:
   normal:
-    family: JetbrainsMono
+    family: JetBrains Mono Nerd Font
   size: 10.0
 
 colors:
@@ -22,7 +22,8 @@ colors:
     cyan: '0x25b2bc'
     white: '0xfdf0ed'
   bright:
-    black: '0x1c1e26'
+    # black: '0x1c1e26'
+    black: '0x2e303e'
     red: '0xf43e5c'
     green: '0x27d796'
     yellow: '0xfac29a'

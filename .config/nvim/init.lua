@@ -1,9 +1,10 @@
-require('plugins')
+require("plugins")
+require("lsp")
 
 vim.opt.hidden = true
--- vim.opt.backup = false
--- vim.opt.writebackup = false
--- vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
 
 -- Use tabs for indentation (by default), render tabs four columns wide
 vim.opt.expandtab = false
@@ -20,7 +21,8 @@ vim.opt.background = "dark"
 vim.opt.number = true
 vim.opt.scrolloff = 3
 vim.opt.list = true
--- vim.opt.showtabline = 2
+vim.opt.colorcolumn = "80"
+vim.opt.textwidth = 80
 require("bufferline").setup{}
 
 vim.opt.splitbelow = true
@@ -45,7 +47,6 @@ require("toggleterm").setup{
 ------------------------------------------------------------
 
 vim.g.mapleader = " "
-
 map = vim.api.nvim_set_keymap
 opts = {noremap = true, silent = true}
 
@@ -55,11 +56,10 @@ map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
--- Move through buffers
--- map("n", "L", ":bn<cr>", opts) 
--- map("n", "H", ":bp<cr>", opts)
+-- Move through and delete buffers
 map("n", "L", ":BufferLineCycleNext<CR>", opts)
 map("n", "H", ":BufferLineCyclePrev<CR>", opts)
+map("n", "D", ":bd<CR>", opts)
 
 -- Stay in visual mode while indenting
 map("v", "<", "<gv", opts)
