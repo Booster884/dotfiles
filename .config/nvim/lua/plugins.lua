@@ -14,15 +14,17 @@ return require("packer").startup(function(use)
 	use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 	use {"akinsho/toggleterm.nvim"}
 	use "gpanders/editorconfig.nvim"
+	use "tpope/vim-fugitive"
 
 	use "neovim/nvim-lspconfig"
 	use "hrsh7th/cmp-vsnip"
 	use "hrsh7th/vim-vsnip"
 	use "hrsh7th/cmp-nvim-lsp"
+	use "hrsh7th/cmp-buffer"
 	use "hrsh7th/nvim-cmp"
 	
-	use "tpope/vim-commentary"
-	
+	use "numToStr/Comment.nvim"
+
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = { {'nvim-lua/plenary.nvim'} }

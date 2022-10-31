@@ -33,14 +33,16 @@ vim.opt.mouse = "a"
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 
-require("toggleterm").setup{
+require("toggleterm").setup({
 	size = 20,
 	open_mapping = [[<C-\>]],
 	direction = "horizontal",
 	hide_numbers = true,
 	shade_terminals = true,
 	shading_factor = 1,
-}
+})
+
+require("Comment").setup()
 
 ------------------------------------------------------------
 -- BINDS
@@ -56,10 +58,9 @@ map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
--- Move through and delete buffers
-map("n", "L", ":BufferLineCycleNext<CR>", opts)
-map("n", "H", ":BufferLineCyclePrev<CR>", opts)
-map("n", "D", ":bd<CR>", opts)
+-- Slightly dubious lsp binds
+map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
+map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
 
 -- Stay in visual mode while indenting
 map("v", "<", "<gv", opts)
@@ -71,14 +72,19 @@ map("v", "p", '"_dP', opts) -- Paste without yanking
 map("x", "J", ":move '>+1<CR>gv-gv", opts)
 map("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- TODO: https://github.com/nvim-telescope/telescope.nvim#usage
+-- Move through and delete buffers
+map("n", "<leader>n", ":BufferLineCycleNext<CR>", opts)
+map("n", "<leader>b", ":BufferLineCyclePrev<CR>", opts)
+map("n", "<leader>d", ":bd<CR>", opts)
 
--- TODO: create function that runs file most appropriately
--- and map that to <leader>r
--- Alternatively: find plugin that does this.
 map("n", "<leader>rp", ":w !python<cr>", opts)
 
-map("n", "<leader>e", ":Lex 30<cr>", opts)
+map("n", "<leader>e", ":Lex 20<cr>", opts)
 
 map("n", "<leader>ps", ":PackerSync<cr>", opts)
 map("n", "<leader>pq", ":PackerStatus<cr>", opts)
+
+map("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+map("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+map("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+map("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
