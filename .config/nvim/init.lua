@@ -14,8 +14,10 @@ vim.opt.tabstop = 4
 vim.opt.smartindent = true
 -- Theme stuff
 vim.opt.termguicolors = true
-vim.api.nvim_set_var("sonokai_style", "shusia")
-vim.cmd("colorscheme sonokai")
+-- vim.api.nvim_set_var("sonokai_style", "shusia")
+-- vim.cmd("colorscheme sonokai")
+vim.cmd("colorscheme oh-lucy-evening")
+-- vim.cmd("colorscheme oxocarbon")
 vim.opt.background = "dark"
 
 vim.opt.number = true
@@ -41,6 +43,17 @@ require("toggleterm").setup({
 	shade_terminals = true,
 	shading_factor = 1,
 })
+
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({
+	cmd = "lazygit",
+	direction = "float",
+	hidden = true,
+})
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
 
 require("Comment").setup()
 
@@ -76,6 +89,8 @@ map("x", "K", ":move '<-2<CR>gv-gv", opts)
 map("n", "<leader>n", ":BufferLineCycleNext<CR>", opts)
 map("n", "<leader>b", ":BufferLineCyclePrev<CR>", opts)
 map("n", "<leader>d", ":bd<CR>", opts)
+
+map("n", "<leader>g", ":lua _lazygit_toggle()<CR>", opts)
 
 map("n", "<leader>rp", ":w !python<cr>", opts)
 
