@@ -9,15 +9,17 @@ return require("packer").startup(function(use)
     -- Plugins
 	use "wbthomason/packer.nvim"
 	
-	use "rafi/awesome-vim-colorschemes"
 	use "Yazeed1s/oh-lucy.nvim"
-	use "nyoom-engineering/oxocarbon.nvim"
+    use "sainnhe/sonokai"
+
 	use "lukas-reineke/indent-blankline.nvim"
 	use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 	use {"akinsho/toggleterm.nvim"}
 	use "gpanders/editorconfig.nvim"
 	use "tpope/vim-fugitive"
+    use "TimUntersberger/neogit"
 	use "sindrets/diffview.nvim"
+    use "lewis6991/gitsigns.nvim"
 
 	use "neovim/nvim-lspconfig"
 	use "hrsh7th/cmp-vsnip"

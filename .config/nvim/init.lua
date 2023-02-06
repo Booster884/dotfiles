@@ -6,18 +6,18 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 
--- Use tabs for indentation (by default), render tabs four columns wide
-vim.opt.expandtab = false
+-- Use four spaces for indentation (by default)
+vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
+
 -- Theme stuff
 vim.opt.termguicolors = true
--- vim.api.nvim_set_var("sonokai_style", "shusia")
--- vim.cmd("colorscheme sonokai")
-vim.cmd("colorscheme oh-lucy-evening")
--- vim.cmd("colorscheme oxocarbon")
+vim.api.nvim_set_var("sonokai_style", "shusia")
+vim.cmd("colorscheme sonokai")
+-- vim.cmd("colorscheme oh-lucy-evening")
 vim.opt.background = "dark"
 
 vim.opt.number = true
@@ -54,6 +54,9 @@ local lazygit = Terminal:new({
 function _lazygit_toggle()
   lazygit:toggle()
 end
+
+require("neogit").setup()
+require("gitsigns").setup()
 
 require("Comment").setup()
 
