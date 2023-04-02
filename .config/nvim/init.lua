@@ -60,6 +60,14 @@ require("gitsigns").setup()
 
 require("Comment").setup()
 
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.diagnostics.flake8,
+    },
+})
+
 ------------------------------------------------------------
 -- BINDS
 ------------------------------------------------------------
@@ -77,6 +85,9 @@ map("n", "<C-l>", "<C-w>l", opts)
 -- Slightly dubious lsp binds
 map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
 map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
+map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
+map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
+map("n", "gr", ":lua vim.lsp.buf.references()<CR>", opts)
 
 -- Stay in visual mode while indenting
 map("v", "<", "<gv", opts)

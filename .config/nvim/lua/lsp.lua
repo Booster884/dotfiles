@@ -47,3 +47,7 @@ lspconfig.pyright.setup({
 lspconfig.rust_analyzer.setup({
 	capabilities = capabilities,
 })
+
+lspconfig.hls.setup({
+    capabilities = capabilities,
+})

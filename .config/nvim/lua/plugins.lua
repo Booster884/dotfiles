@@ -27,6 +27,7 @@ return require("packer").startup(function(use)
 	use "hrsh7th/cmp-nvim-lsp"
 	use "hrsh7th/cmp-buffer"
 	use "hrsh7th/nvim-cmp"
+    use "jose-elias-alvarez/null-ls.nvim"
 	
 	use "numToStr/Comment.nvim"
 
