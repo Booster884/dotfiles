@@ -1,7 +1,14 @@
+if [[ -n "$IN_NIX_SHELL" ]]; then
+	nixlabel='%F{cyan}*%f '
+fi
+
+source ~/zsh-nix-shell/nix-shell.plugin.zsh
+
 autoload -Uz add-zsh-hook vcs_info
 setopt prompt_subst
 add-zsh-hook precmd vcs_info
-export PROMPT='%1~ %F{blue}${vcs_info_msg_0_}%f%(?.%F{green}.%F{red})>%f '
+export PROMPT='%1~ %F{blue}${vcs_info_msg_0_}%f$nixlabel%(?.%F{green}.%F{red})>%f '
+# unset nixlabel
 
 # https://salferrarello.com/zsh-git-status-prompt/
 zstyle ':vcs_info:*' check-for-changes true
@@ -33,4 +40,4 @@ export TERM="xterm-256color"
 
 export HISTFILE=/dev/null
 
-powerprofilesctl set power-saver
+# powerprofilesctl set power-saver
