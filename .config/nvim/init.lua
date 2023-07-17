@@ -25,7 +25,6 @@ vim.opt.scrolloff = 3
 vim.opt.list = true
 vim.opt.colorcolumn = "80"
 vim.opt.textwidth = 80
-require("bufferline").setup{}
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -87,7 +86,8 @@ map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
 map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
 map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
 map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
-map("n", "gr", ":lua vim.lsp.buf.references()<CR>", opts)
+map("n", "gr", ":Telescope lsp_references<CR>", opts)
+-- map("n", "gr", ":lua vim.lsp.buf.references()<CR>", opts)
 
 -- Stay in visual mode while indenting
 map("v", "<", "<gv", opts)
@@ -99,10 +99,10 @@ map("v", "p", '"_dP', opts) -- Paste without yanking
 map("x", "J", ":move '>+1<CR>gv-gv", opts)
 map("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- Move through and delete buffers
-map("n", "<leader>n", ":BufferLineCycleNext<CR>", opts)
-map("n", "<leader>b", ":BufferLineCyclePrev<CR>", opts)
-map("n", "<leader>d", ":bd<CR>", opts)
+-- Move through and delete tabs
+map("n", "<leader>n", ":tabn<CR>", opts)
+map("n", "<leader>b", ":tabp<CR>", opts)
+map("n", "<leader>d", ":tabclose<CR>", opts)
 
 map("n", "<leader>g", ":lua _lazygit_toggle()<CR>", opts)
 
