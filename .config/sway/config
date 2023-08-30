@@ -221,6 +221,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+assign [title="bite"] workspace number 3
+
 #
 # Status Bar:
 #

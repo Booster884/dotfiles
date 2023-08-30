@@ -25,6 +25,7 @@ vim.opt.scrolloff = 3
 vim.opt.list = true
 vim.opt.colorcolumn = "80"
 vim.opt.textwidth = 80
+vim.opt.wrap = false
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -114,6 +115,9 @@ map("n", "<leader>ps", ":PackerSync<cr>", opts)
 map("n", "<leader>pq", ":PackerStatus<cr>", opts)
 
 map("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+map("n", "<C-f>", ":Telescope find_files<CR>", opts)
 map("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+map("n", "<C-g>", ":Telescope live_grep<CR>", opts)
 map("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 map("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+map("n", "<leader>fd", ":Telescope diagnostics<CR>", opts)

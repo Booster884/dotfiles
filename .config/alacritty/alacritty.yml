@@ -33,3 +33,6 @@ colors:
     white: '0x2e303e'
 
 background-opacity: 0.0
+
+key_bindings:
+  - { key: Return, mods: Alt, action: SpawnNewInstance    }
