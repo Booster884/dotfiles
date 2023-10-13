@@ -1,6 +1,3 @@
-require("plugins")
-require("lsp")
-
 vim.opt.hidden = true
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -12,13 +9,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
-
--- Theme stuff
-vim.opt.termguicolors = true
-vim.api.nvim_set_var("sonokai_style", "shusia")
-vim.cmd("colorscheme sonokai")
--- vim.cmd("colorscheme oh-lucy-evening")
-vim.opt.background = "dark"
 
 vim.opt.number = true
 vim.opt.scrolloff = 3
@@ -33,48 +23,20 @@ vim.opt.splitright = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-
-require("toggleterm").setup({
-	size = 20,
-	open_mapping = [[<C-\>]],
-	direction = "horizontal",
-	hide_numbers = true,
-	shade_terminals = true,
-	shading_factor = 1,
-})
-
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({
-	cmd = "lazygit",
-	direction = "float",
-	hidden = true,
-})
-
-function _lazygit_toggle()
-  lazygit:toggle()
-end
-
-require("neogit").setup()
-require("gitsigns").setup()
-
-require("Comment").setup()
-
-local null_ls = require("null-ls")
-
-null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.flake8,
-    },
-})
-
-------------------------------------------------------------
--- BINDS
-------------------------------------------------------------
+-- Mappings
 
 vim.g.mapleader = " "
 map = vim.api.nvim_set_keymap
 opts = {noremap = true, silent = true}
+
+-- LSP
+map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
+map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
+map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
+map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
+map("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opts)
+map("n", "ga", ":lua vim.lsp.buf.code_action()<CR>", opts)
+map("n", "gr", ":Telescope lsp_references<CR>", opts)
 
 -- Move through windows
 map("n", "<C-h>", "<C-w>h", opts)
@@ -82,19 +44,9 @@ map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
--- Slightly dubious lsp binds
-map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
-map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
-map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
-map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
-map("n", "gr", ":Telescope lsp_references<CR>", opts)
--- map("n", "gr", ":lua vim.lsp.buf.references()<CR>", opts)
-
 -- Stay in visual mode while indenting
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
-
-map("v", "p", '"_dP', opts) -- Paste without yanking
 
 -- Move text
 map("x", "J", ":move '>+1<CR>gv-gv", opts)
@@ -105,19 +57,26 @@ map("n", "<leader>n", ":tabn<CR>", opts)
 map("n", "<leader>b", ":tabp<CR>", opts)
 map("n", "<leader>d", ":tabclose<CR>", opts)
 
-map("n", "<leader>g", ":lua _lazygit_toggle()<CR>", opts)
+-- Lazy.nvim
 
-map("n", "<leader>rp", ":w !python<cr>", opts)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
 
-map("n", "<leader>e", ":Lex 20<cr>", opts)
-
-map("n", "<leader>ps", ":PackerSync<cr>", opts)
-map("n", "<leader>pq", ":PackerStatus<cr>", opts)
-
-map("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-map("n", "<C-f>", ":Telescope find_files<CR>", opts)
-map("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
-map("n", "<C-g>", ":Telescope live_grep<CR>", opts)
-map("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-map("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
-map("n", "<leader>fd", ":Telescope diagnostics<CR>", opts)
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({
+  { import = "plugins" },
+  { import = "lsp" },
+}, {
+  change_detection = {
+    enabled = false,
+  },
+})

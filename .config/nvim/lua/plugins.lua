@@ -1,44 +1,59 @@
--- Boostrap packer on fresh install
-local fn = vim.fn
-local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
-end
+return {
+  {
+    "sainnhe/sonokai",
+    init = function()
+      vim.opt.termguicolors = true
+      vim.api.nvim_set_var("sonokai_style", "shusia")
+      vim.cmd("colorscheme sonokai")
+    end,
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    opts = {
+      size = 20,
+      open_mapping = [[<C-\>]],
+      direction = "horizontal",
+      hide_numbers = true,
+      shade_terminals = true,
+      shading_factor = 1,
+    },
+    init = function()
+      -- Cursed (?) setup for lazygit window
+      local Terminal  = require('toggleterm.terminal').Terminal
+      local lazygit = Terminal:new({
+        cmd = "lazygit",
+        direction = "float",
+        hidden = true,
+      })
 
-return require("packer").startup(function(use)
-    -- Plugins
-	use "wbthomason/packer.nvim"
-	
-	use "Yazeed1s/oh-lucy.nvim"
-    use "sainnhe/sonokai"
+      function _lazygit_toggle()
+        lazygit:toggle()
+      end
 
-	use "lukas-reineke/indent-blankline.nvim"
-	use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
-	use {"akinsho/toggleterm.nvim"}
-	use "gpanders/editorconfig.nvim"
-	use "tpope/vim-fugitive"
-    use "TimUntersberger/neogit"
-	use "sindrets/diffview.nvim"
-    use "lewis6991/gitsigns.nvim"
-
-	use "neovim/nvim-lspconfig"
-	use "hrsh7th/cmp-vsnip"
-	use "hrsh7th/vim-vsnip"
-	use "hrsh7th/cmp-nvim-lsp"
-	use "hrsh7th/cmp-buffer"
-	use "hrsh7th/nvim-cmp"
-    use "jose-elias-alvarez/null-ls.nvim"
-	
-	use "numToStr/Comment.nvim"
-
-	use {
-		'nvim-telescope/telescope.nvim',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
-	
-
-	-- Install packer packages on bootstrap
-    if packer_boostrap then
-		require("packer").sync()
-    end
-end)
+      map = vim.api.nvim_set_keymap
+      opts = {noremap = true, silent = true}
+      map("n", "<leader>g", ":lua _lazygit_toggle()<CR>", opts)
+    end,
+  },
+  "nvim-lua/plenary.nvim",
+  "nvim-tree/nvim-web-devicons",
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader>ff", ":Telescope find_files<CR>" },
+      { "<C-f>", ":Telescope find_files<CR>" },
+      { "<leader>fg", ":Telescope live_grep<CR>" },
+      { "<C-g>", ":Telescope live_grep<CR>" },
+      { "<leader>fb", ":Telescope buffers<CR>" },
+      { "<leader>fh", ":Telescope help_tags<CR>" },
+      { "<leader>fd", ":Telescope diagnostics<CR>" }
+    },
+    dependencies = {
+      "nvim-telescope/telescope-symbols.nvim",
+    },
+  },
+  "sindrets/diffview.nvim",
+  "lewis6991/gitsigns.nvim",
+  { "lukas-reineke/indent-blankline.nvim", main = 'ibl', opts = {} },
+  { "numToStr/Comment.nvim", opts = {} },
+}
