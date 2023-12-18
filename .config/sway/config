@@ -88,7 +88,7 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
 	bindsym $mod+F2 exec firefox
 	bindsym $mod+Shift+F2 exec firefox --private-window
 
-    bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+    bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy --type image/png
 
 #
 # Multimedia keys
