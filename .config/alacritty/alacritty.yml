@@ -6,6 +6,7 @@ window:
 font:
   normal:
     family: JetBrains Mono Nerd Font
+    family: Iosevka Slab
   size: 10.0
 
 colors:

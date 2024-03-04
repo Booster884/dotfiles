@@ -7,4 +7,7 @@ else
 	output=""
 fi
 
+# King Gizzard have a band name that causes wrapping >:(
+output=$(echo "$output" | sed "s/King Gizzard & The Lizard Wizard/King Gizz/")
+
 echo -e "{\"text\":\""$output"\", \"alt\":\"\", \"tooltip\":\"\"}"

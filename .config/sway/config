@@ -24,10 +24,10 @@ gaps outer 0
 
 ### Output configuration
 #
-# output * bg ~/wallpaper fill
+# output * bg ~/ fill
 
-output DP-2 resolution 1920x1080 position 1920 0
-output DP-3 resolution 1920x1080 position 0 0
+output DP-3 resolution 1920x1080 position 1920 0
+output DP-1 resolution 1920x1080 position 0 0
 
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -46,17 +46,18 @@ bindswitch --reload --locked lid:on exec $lock
 input * {
     repeat_delay 250
     repeat_rate 30
+    xkb_options compose:rctrl
 }
 
 input type:touchpad {
     tap "enabled"
     click_method "clickfinger"
-	dwt "disabled"
+    dwt "disabled"
 }
 
 input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     accel_profile "flat"
-    pointer_accel 0.7
+    pointer_accel 0.1
 }
 
 ### Key bindings
@@ -65,6 +66,7 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec st
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -101,8 +103,8 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
 
-	bindsym XF86MonBrightnessUp exec light -A 5
-	bindsym XF86MonBrightnessDown exec light -U 5
+	bindsym $mod+i exec light -A 5
+	bindsym $mod+o exec light -U 5
 
 #
 # Moving around:
@@ -156,8 +158,21 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
     
-    bindsym Mod1+Tab workspace next
-    bindsym Mod1+Shift+Tab worksace prev
+    bindsym $mod+Tab workspace next
+    bindsym $mod+Shift+Tab worksace prev
+
+    bindsym $mod+m move workspace to output left
+
+    workspace 1 output DP-3
+    workspace 2 output DP-1
+    workspace 3 output DP-3
+    workspace 4 output DP-1
+    workspace 5 output DP-3
+    workspace 6 output DP-1
+    workspace 7 output DP-3
+    workspace 8 output DP-1
+    workspace 9 output DP-3
+    workspace 0 output DP-1
 
 #
 # Layout stuff:
@@ -232,4 +247,5 @@ bar {
 
 exec swaymsg reload
 exec libinput-gestures-setup start
-include /etc/sway/config.d/*
+# include /etc/sway/config.d/*
+exec dunst
