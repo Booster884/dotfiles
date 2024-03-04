@@ -53,7 +53,14 @@ return {
     },
   },
   "sindrets/diffview.nvim",
-  "lewis6991/gitsigns.nvim",
-  { "lukas-reineke/indent-blankline.nvim", main = 'ibl', opts = {} },
+  { "lewis6991/gitsigns.nvim", opts = {} },
+  -- { "lukas-reineke/indent-blankline.nvim", main = 'ibl', opts = {} },
   { "numToStr/Comment.nvim", opts = {} },
+  -- {
+  --   "kaarmu/typst.vim",
+  --   init = function()
+  --     vim.g.typst_pdf_viewer = "zathura"
+  --   end
+  -- },
+  "kaarmu/typst.vim",
 }

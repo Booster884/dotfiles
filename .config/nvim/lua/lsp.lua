@@ -21,6 +21,10 @@ return {
       lspconfig.hls.setup({
           capabilities = capabilities,
       })
+
+      lspconfig.typst_lsp.setup({
+          capabilities = capabilities,
+      })
       end
   },
   {
@@ -29,7 +33,8 @@ return {
       "hrsh7th/cmp-vsnip",
       "hrsh7th/vim-vsnip",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer"
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path"
     },
     init = function()
       local cmp = require("cmp")

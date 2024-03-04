@@ -11,10 +11,11 @@ vim.opt.tabstop = 4
 vim.opt.smartindent = true
 
 vim.opt.number = true
+-- vim.opt.relativenumber = true
 vim.opt.scrolloff = 3
 vim.opt.list = true
 vim.opt.colorcolumn = "80"
-vim.opt.textwidth = 80
+-- vim.opt.textwidth = 80
 vim.opt.wrap = false
 
 vim.opt.splitbelow = true
@@ -32,11 +33,14 @@ opts = {noremap = true, silent = true}
 -- LSP
 map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
 map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
+map("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
+map("n", "<leader>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
 map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
 map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
 map("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opts)
 map("n", "ga", ":lua vim.lsp.buf.code_action()<CR>", opts)
 map("n", "gr", ":Telescope lsp_references<CR>", opts)
+
 
 -- Move through windows
 map("n", "<C-h>", "<C-w>h", opts)
@@ -58,7 +62,6 @@ map("n", "<leader>b", ":tabp<CR>", opts)
 map("n", "<leader>d", ":tabclose<CR>", opts)
 
 -- Lazy.nvim
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
