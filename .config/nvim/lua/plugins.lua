@@ -63,4 +63,31 @@ return {
   --   end
   -- },
   "kaarmu/typst.vim",
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function ()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "markdown",
+          "html",
+          "css",
+          "javascript",
+          "python",
+          "toml",
+          "json",
+          "lua",
+          "bash",
+          "comment",
+          "c",
+          "lua",
+          "rust",
+          "nix",
+        },
+        highlight = {
+          enable = true
+        },
+      })
+    end,
+  },
 }

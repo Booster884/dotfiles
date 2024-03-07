@@ -25,7 +25,7 @@ return {
       lspconfig.typst_lsp.setup({
           capabilities = capabilities,
       })
-      end
+    end
   },
   {
     "hrsh7th/nvim-cmp",
