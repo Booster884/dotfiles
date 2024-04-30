@@ -28,6 +28,12 @@ window#waybar {
 	box-shadow: inherit;
 }
 
+#workspaces button.urgent {
+	background: #f43e5c;
+	border: #25b2bc;
+	box-shadow: inherit;
+}
+
 #clock,
 #battery,
 #cpu,

@@ -103,8 +103,8 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
 
-	bindsym $mod+i exec light -A 5
-	bindsym $mod+o exec light -U 5
+	bindsym $mod+i exec light -A 10
+	bindsym $mod+o exec light -U 10
 
 #
 # Moving around:
