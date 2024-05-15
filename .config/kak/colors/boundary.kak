@@ -3,10 +3,9 @@
 # https://github.com/jolaleye/horizon-theme-vscode
 
 evaluate-commands %sh{
-    #black="rgb:16161c"
-    black="rgb:0b0b0e"
-    dark_gray="rgb:1c1e26"
-    gray="rgb:2e303e"
+    black="rgb:16161c"
+    dark_gray="rgb:2e303e"
+    gray="rgb:6e707e"
     white="rgb:fdf0ed"
 
     pink="rgb:de87bc"

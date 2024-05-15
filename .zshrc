@@ -8,6 +8,7 @@ autoload -Uz add-zsh-hook vcs_info
 setopt prompt_subst
 add-zsh-hook precmd vcs_info
 export PROMPT='%1~ %F{blue}${vcs_info_msg_0_}%f$nixlabel%(?.%F{green}.%F{red})>%f '
+# export RPROMPT='%m'
 # unset nixlabel
 
 # https://salferrarello.com/zsh-git-status-prompt/
@@ -27,13 +28,23 @@ export EDITOR="nvim"
 alias dotfiles="git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME"
 alias lazydots="lazygit --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME"
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 alias py="python3"
 alias pdb="py -m pdb"
 alias pypy="pypy3"
 alias vim="nvim"
+alias emacs="emacs -nw"
+alias ns="nix-shell"
+alias se="sudoedit"
 
 alias du="du -sh"
+alias df="df -h"
 alias ls="exa --group-directories-first"
+alias diff="delta"
+alias make="make -j $(nproc)"
 
 # Makes ssh play nice with alacritty
 export TERM="xterm-256color"
