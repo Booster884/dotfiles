@@ -1,0 +1,38 @@
+[colors.bright]
+black = "0x2e303e"
+blue = "0x6c6f93"
+cyan = "0x25b2bc"
+green = "0x27d796"
+magenta = "0xde87bc"
+red = "0xf43e5c"
+white = "0x6e707e"
+yellow = "0xfac29a"
+
+[colors.normal]
+black = "0x16161c"
+blue = "0x6c6f93"
+cyan = "0x25b2bc"
+green = "0x27d796"
+magenta = "0xde87bc"
+red = "0xf43e5c"
+white = "0xfdf0ed"
+yellow = "0xfac29a"
+
+[colors.primary]
+background = "0x16161c"
+foreground = "0xfdf0ed"
+
+[font]
+size = 10.0
+
+[font.normal]
+family = "Iosevka Slab"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Alt"
+
+[window.padding]
+x = 2
+y = 2
