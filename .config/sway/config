@@ -28,6 +28,19 @@ gaps outer 0
 
 output DP-3 resolution 1920x1080 position 1920 0
 output DP-1 resolution 1920x1080 position 0 0
+output eDP-1 resolution 2256x1504 scale 1.5
+
+set $gnome_schema org.gnome.desktop.interface
+set $xcursor_theme WhiteSur-cursors
+set $xcursor_size 24
+
+# exec_always {
+#     gsettings set $gnome_schema icon-theme $xcursor_theme
+#     gsettings set $gnome_schema cursor-theme $xcursor_theme
+#     gsettings set $gnome_schema cursor-size $xcursor_size
+# }
+
+seat seat0 xcursor_theme $xcursor_theme $xcursor_size
 
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -37,7 +50,7 @@ set $lock swaylock -f -c 121212 -i ~/wallpaper
 exec swayidle -w \
     timeout 300 $lock \
     timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-	before-sleep $lock; sleep 1
+    before-sleep $lock; sleep 1
 
 bindswitch --reload --locked lid:on exec $lock
 
@@ -72,7 +85,7 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec rofi -show drun | xargs swaymsg exec --
+    bindsym $mod+d exec ELECTRON_OZONE_PLATFORM_HINT=wayland rofi -show drun | xargs swaymsg exec --
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -95,9 +108,9 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
 #
 # Multimedia keys
 #
-	bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 3 +5%
-	bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 3 -5%
-	bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 3 toggle
+	# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 3 +5%
+	# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 3 -5%
+	# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 3 toggle
 
 	bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioNext exec playerctl next
@@ -241,11 +254,11 @@ assign [title="bite"] workspace number 3
 #
 # Status Bar:
 #
-bar { 
+bar {
     swaybar_command waybar
 }
 
-exec swaymsg reload
-exec libinput-gestures-setup start
-# include /etc/sway/config.d/*
-exec dunst
+# exec swaymsg reload
+# exec libinput-gestures-setup start
+# exec dunst
+exec dbus-update-activation-environment DISPLAY
