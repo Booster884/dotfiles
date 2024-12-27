@@ -14,6 +14,9 @@ set $term alacritty
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
+set $primary_display DP-3
+set $secondary_display DP-2
+
 font pango:JetBrainsMono 8
 
 client.focused #25B2BC #000000 #FFFFFF #FDF0ED #25B2BC
@@ -26,8 +29,8 @@ gaps outer 0
 #
 # output * bg ~/ fill
 
-output DP-3 resolution 1920x1080 position 1920 0
-output DP-1 resolution 1920x1080 position 0 0
+output $primary_display resolution 1920x1080@60Hz position 1920 0
+output $secondary_display resolution 1920x1080@60Hz position 0 0
 output eDP-1 resolution 2256x1504 scale 1.5
 
 set $gnome_schema org.gnome.desktop.interface
@@ -108,16 +111,16 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
 #
 # Multimedia keys
 #
-	# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 3 +5%
-	# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 3 -5%
-	# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 3 toggle
+    bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-	bindsym XF86AudioPlay exec playerctl play-pause
-    bindsym XF86AudioNext exec playerctl next
-    bindsym XF86AudioPrev exec playerctl previous
+    bindsym XF86AudioPlay exec playerctl -p spotify play-pause
+    bindsym XF86AudioNext exec playerctl -p spotify next
+    bindsym XF86AudioPrev exec playerctl -p spotify previous
 
-	bindsym $mod+i exec light -A 10
-	bindsym $mod+o exec light -U 10
+    bindsym $mod+i exec light -A 10
+    bindsym $mod+o exec light -U 10
 
 #
 # Moving around:
@@ -170,22 +173,22 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-    
+
     bindsym $mod+Tab workspace next
     bindsym $mod+Shift+Tab worksace prev
 
     bindsym $mod+m move workspace to output left
 
-    workspace 1 output DP-3
-    workspace 2 output DP-1
-    workspace 3 output DP-3
-    workspace 4 output DP-1
-    workspace 5 output DP-3
-    workspace 6 output DP-1
-    workspace 7 output DP-3
-    workspace 8 output DP-1
-    workspace 9 output DP-3
-    workspace 0 output DP-1
+    workspace 1 output $primary_display
+    workspace 2 output $secondary_display
+    workspace 3 output $primary_display
+    workspace 4 output $secondary_display
+    workspace 5 output $primary_display
+    workspace 6 output $secondary_display
+    workspace 7 output $primary_display
+    workspace 8 output $secondary_display
+    workspace 9 output $primary_display
+    workspace 10 output $secondary_display
 
 #
 # Layout stuff:
@@ -250,6 +253,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 assign [title="bite"] workspace number 3
+for_window [title="Bitwarden"] floating enable
 
 #
 # Status Bar:
