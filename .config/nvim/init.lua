@@ -24,6 +24,21 @@ vim.opt.splitright = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
 
+two_space_indent_fes = {
+  "lua",
+  "nix",
+}
+
+for _, extension in ipairs(two_space_indent_fes) do
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = extension,
+    callback = function ()
+      vim.opt_local.shiftwidth = 2
+      vim.opt_local.tabstop = 2
+    end
+  })
+end
+
 -- Mappings
 
 vim.g.mapleader = " "
@@ -36,8 +51,8 @@ map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
 map("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
 map("n", "<leader>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
 map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
-map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
-map("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opts)
+map("n", "gd", ":Telescope lsp_definitions<CR>", opts)
+map("n", "gt", ":Telescope lsp_type_definitions<CR>", opts)
 map("n", "ga", ":lua vim.lsp.buf.code_action()<CR>", opts)
 map("n", "gr", ":Telescope lsp_references<CR>", opts)
 

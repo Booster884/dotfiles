@@ -19,10 +19,15 @@ return {
       })
 
       lspconfig.hls.setup({
-          capabilities = capabilities,
+        capabilities = capabilities,
+        settings = {
+          haskell = {
+            formattingProvider = "fourmolu",
+          },
+        },
       })
 
-      lspconfig.typst_lsp.setup({
+      lspconfig.tinymist.setup({
           capabilities = capabilities,
       })
     end
