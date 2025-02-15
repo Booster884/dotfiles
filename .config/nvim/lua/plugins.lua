@@ -83,6 +83,7 @@ return {
           "lua",
           "rust",
           "nix",
+          "haskell",
         },
         highlight = {
           enable = true
