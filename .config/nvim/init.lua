@@ -51,6 +51,12 @@ vim.filetype.add {
   }
 }
 
+vim.filetype.add {
+  extension = {
+    ccn = "coconut",
+  }
+}
+
 -- Hard mode
 for _, mode in ipairs({"n", "i", "v"}) do
   map(mode, "<Up>", "<Nop>", opts)

@@ -34,6 +34,30 @@ return {
       lspconfig.ocamllsp.setup({
           capabilities = capabilities,
       })
+
+      local server_config = require("lspconfig.configs")
+      local root_pattern = require("lspconfig.util").root_pattern
+
+      server_config.coconut = {
+        default_config = {
+          -- cmd = { "/home/booster/dev/coconut-ls/dist-newstyle/build/x86_64-linux/ghc-9.8.4/coconut-ls-0.1.0.0/x/coconut-ls/build/coconut-ls/coconut-ls" },
+          cmd = { "/home/booster/dev/ccn-ls/target/debug/ccn-ls" },
+          name = "coconut",
+          filetypes = {
+            "coconut",
+          },
+          -- root_dir = function(fname)
+          --   return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+          -- end,
+          single_file_support = true,
+        }
+      }
+
+      lspconfig.coconut.setup({
+        on_attach = function(client)
+          vim.lsp.set_log_level("INFO")
+        end
+      })
     end
   },
   {
