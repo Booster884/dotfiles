@@ -45,6 +45,12 @@ vim.g.mapleader = " "
 map = vim.api.nvim_set_keymap
 opts = {noremap = true, silent = true}
 
+vim.filetype.add {
+  extension = {
+    cvc = "civic",
+  }
+}
+
 -- LSP
 map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
 map("n", "<leader>w", ":lua vim.diagnostic.open_float()<CR>", opts)
