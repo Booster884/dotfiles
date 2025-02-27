@@ -2,7 +2,7 @@ if [[ -n "$IN_NIX_SHELL" ]]; then
 	nixlabel='%F{cyan}*%f '
 fi
 
-source ~/zsh-nix-shell/nix-shell.plugin.zsh
+# source ~/zsh-nix-shell/nix-shell.plugin.zsh
 
 autoload -Uz add-zsh-hook vcs_info
 setopt prompt_subst
@@ -37,7 +37,7 @@ alias pdb="py -m pdb"
 alias pypy="pypy3"
 alias vim="nvim"
 alias emacs="emacs -nw"
-alias ns="nix-shell"
+alias ns="nix-shell --run zsh"
 alias se="sudoedit"
 
 alias du="du -sh"
@@ -50,5 +50,7 @@ alias make="make -j $(nproc)"
 export TERM="xterm-256color"
 
 export HISTFILE=/dev/null
+
+export WLR_NO_HARDWARE_CURSORS=1
 
 # powerprofilesctl set power-saver

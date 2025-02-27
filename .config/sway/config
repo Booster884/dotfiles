@@ -265,4 +265,4 @@ bar {
 # exec swaymsg reload
 # exec libinput-gestures-setup start
 # exec dunst
-exec dbus-update-activation-environment DISPLAY
+exec /home/booster/.config/sway/portal.sh
