@@ -67,6 +67,18 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function ()
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.civic = {
+        install_info = {
+          -- Change this url to your grammar
+          url = "~/dev/palmsitters/tree-sitter-civic/",
+          files = { "src/parser.c" },
+          generate_reqires_npm = false,
+          requires_generate_from_grammar = false,
+        },
+        -- The filetype you want it registered as
+        filetype = "civic",
+      }
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "markdown",
@@ -85,6 +97,7 @@ return {
           "nix",
           "haskell",
           "typst",
+          "civic",
         },
         highlight = {
           enable = true
