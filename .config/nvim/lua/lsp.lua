@@ -30,6 +30,10 @@ return {
       lspconfig.tinymist.setup({
           capabilities = capabilities,
       })
+
+      lspconfig.ocamllsp.setup({
+          capabilities = capabilities,
+      })
     end
   },
   {

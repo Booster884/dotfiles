@@ -47,6 +47,7 @@ opts = {noremap = true, silent = true}
 
 -- LSP
 map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
+map("n", "<leader>w", ":lua vim.diagnostic.open_float()<CR>", opts)
 map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
 map("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
 map("n", "<leader>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
