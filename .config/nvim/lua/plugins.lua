@@ -7,6 +7,18 @@ return {
       vim.cmd("colorscheme sonokai")
     end,
   },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   dependencies = "nvim-tree/nvim-web-devicons",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     options = {
+  --       theme = "auto",
+  --       component_separators = "|",
+  --       section_separators = "",
+  --     },
+  --   },
+  -- },
   {
     "akinsho/toggleterm.nvim",
     opts = {

@@ -25,6 +25,8 @@ export TERMINAL="alacritty"
 export BROWSER="firefox"
 export EDITOR="nvim"
 
+export PATH="$PATH:/home/booster/.cargo/bin"
+
 alias dotfiles="git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME"
 alias lazydots="lazygit --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME"
 
