@@ -37,12 +37,19 @@ icons[reboot]="\ufc07"
 icons[shutdown]="\uf011"
 icons[cancel]="\u00d7"
 
+lock="swaylock -f -c 121212"
+
+lock_suspend () {
+  $lock
+  systemctl suspend
+}
+
 declare -A actions
 # actions[lockscreen]="loginctl lock-session ${XDG_SESSION_ID-}"
-actions[lockscreen]="swaylock -f -c 121212"
+actions[lockscreen]=$lock
 #actions[switchuser]="???"
 actions[logout]="loginctl terminate-session ${XDG_SESSION_ID-}"
-actions[suspend]="systemctl suspend"
+actions[suspend]=lock_suspend
 actions[hibernate]="systemctl hibernate"
 actions[reboot]="systemctl reboot"
 actions[shutdown]="systemctl poweroff"
