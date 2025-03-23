@@ -11,7 +11,7 @@ vim.opt.tabstop = 4
 vim.opt.smartindent = true
 
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 vim.opt.scrolloff = 3
 vim.opt.list = true
 vim.opt.colorcolumn = "80"
@@ -44,6 +44,20 @@ end
 vim.g.mapleader = " "
 map = vim.api.nvim_set_keymap
 opts = {noremap = true, silent = true}
+
+vim.filetype.add {
+  extension = {
+    cvc = "civic",
+  }
+}
+
+-- Hard mode
+for _, mode in ipairs({"n", "i", "v"}) do
+  map(mode, "<Up>", "<Nop>", opts)
+  map(mode, "<Down>", "<Nop>", opts)
+  map(mode, "<Left>", "<Nop>", opts)
+  map(mode, "<Right>", "<Nop>", opts)
+end
 
 -- LSP
 map("n", ",", ":lua vim.lsp.buf.hover()<CR>", opts)
