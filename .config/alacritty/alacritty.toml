@@ -32,7 +32,3 @@ family = "Iosevka Slab"
 action = "SpawnNewInstance"
 key = "Return"
 mods = "Alt"
-
-[window.padding]
-x = 2
-y = 2
