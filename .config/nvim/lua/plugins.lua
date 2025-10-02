@@ -28,6 +28,7 @@ return {
       hide_numbers = true,
       shade_terminals = true,
       shading_factor = 1,
+      shell = "zsh",
     },
     init = function()
       -- Cursed (?) setup for lazygit window
@@ -58,11 +59,18 @@ return {
       { "<C-g>", ":Telescope live_grep<CR>" },
       { "<leader>fb", ":Telescope buffers<CR>" },
       { "<leader>fh", ":Telescope help_tags<CR>" },
-      { "<leader>fd", ":Telescope diagnostics<CR>" }
+      { "<leader>fd", ":Telescope diagnostics<CR>" },
+      { "<leader>fs", ":Telescope lsp_document_symbols<CR>" },
+      { "<leader>fS", ":Telescope lsp_workspace_symbols<CR>" },
     },
     dependencies = {
       "nvim-telescope/telescope-symbols.nvim",
     },
+  },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    lazy = false,
   },
   "sindrets/diffview.nvim",
   { "lewis6991/gitsigns.nvim", opts = {} },
@@ -112,5 +120,15 @@ return {
         },
       })
     end,
+  },
+  { "Julian/lean.nvim",
+    event = { "BufReadPre *.lean", "BufNewFile *.lean" },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      mappings = true,
+    },
   },
 }
