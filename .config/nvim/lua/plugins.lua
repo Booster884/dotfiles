@@ -44,18 +44,31 @@ return {
       { "<C-f>", ":Telescope find_files<CR>" },
       { "<leader>fg", ":Telescope live_grep<CR>" },
       { "<C-g>", ":Telescope live_grep<CR>" },
+      { "<leader>fc", ":Telescope grep_string<CR>" },
       { "<leader>fb", ":Telescope buffers<CR>" },
       { "<leader>fh", ":Telescope help_tags<CR>" },
-      { "<leader>fd", ":Telescope diagnostics<CR>" }
+      { "<leader>fd", ":Telescope diagnostics<CR>" },
+      { "<leader>fs", ":Telescope lsp_document_symbols<CR>" },
+      { "<leader>fS", ":Telescope lsp_workspace_symbols<CR>" },
     },
     dependencies = {
       "nvim-telescope/telescope-symbols.nvim",
     },
   },
+   {
+    "stevearc/oil.nvim",
+    opts = {},
+    lazy = false,
+  },
   "sindrets/diffview.nvim",
   { "lewis6991/gitsigns.nvim", opts = {} },
   -- { "lukas-reineke/indent-blankline.nvim", main = 'ibl', opts = {} },
   { "numToStr/Comment.nvim", opts = {} },
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    opts = {},
+  },
   -- {
   --   "kaarmu/typst.vim",
   --   init = function()
@@ -85,6 +98,7 @@ return {
           "nix",
           "haskell",
           "typst",
+          "gdscript",
         },
         highlight = {
           enable = true
@@ -100,5 +114,16 @@ return {
         },
       })
     end,
+  },
+  {
+    'Julian/lean.nvim',
+    event = { 'BufReadPre *.lean', 'BufNewFile *.lean' },
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'nvim-lua/plenary.nvim',
+    },
+    opts = {
+      mappings = true,
+    }
   },
 }

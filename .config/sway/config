@@ -31,7 +31,9 @@ gaps outer 0
 
 output $primary_display resolution 1920x1080@60Hz position 1920 0
 output $secondary_display resolution 1920x1080@60Hz position 0 0
-output eDP-1 resolution 2256x1504 scale 1.5
+
+output eDP-1 resolution 2256x1504 scale 1.5 position 208 1080
+output DP-4 resolution 1920x1080@60Hz position 0 0
 
 set $gnome_schema org.gnome.desktop.interface
 set $xcursor_theme WhiteSur-cursors
@@ -103,8 +105,9 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     # Run powermenu (log out, shutdown, etc)
     bindsym $mod+Shift+e exec rofi -show powermenu -modi powermenu:~/.config/rofi/rofi-power-menu
 
-	bindsym $mod+F2 exec firefox
-	bindsym $mod+Shift+F2 exec firefox --private-window
+    bindsym $mod+F2 exec firefox
+    bindsym $mod+Shift+F2 exec firefox --private-window
+    bindsym $mod+F3 exec ELECTRON_OZONE_PLATFORM_HINT=wayland obsidian
 
     bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy --type image/png
 
@@ -119,8 +122,8 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     bindsym XF86AudioNext exec playerctl -p spotify next
     bindsym XF86AudioPrev exec playerctl -p spotify previous
 
-    bindsym $mod+i exec light -A 10
-    bindsym $mod+o exec light -U 10
+    bindsym $mod+i exec brightnessctl s +10%
+    bindsym $mod+o exec brightnessctl s 10%-
 
 #
 # Moving around:
@@ -135,6 +138,9 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
+
+    bindsym Alt+Tab focus next
+    bindsym Alt+Shift+Tab focus prev
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -175,9 +181,10 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     # We just use 1-10 as the default.
 
     bindsym $mod+Tab workspace next
-    bindsym $mod+Shift+Tab worksace prev
+    bindsym $mod+Shift+Tab workspace prev
 
     bindsym $mod+m move workspace to output left
+    bindsym $mod+Shift+m move workspace to output up
 
     workspace 1 output $primary_display
     workspace 2 output $secondary_display
@@ -252,7 +259,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-assign [title="bite"] workspace number 3
+# assign [title="bite"] workspace number 3
 for_window [title="Bitwarden"] floating enable
 
 #

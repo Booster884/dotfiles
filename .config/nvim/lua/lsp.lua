@@ -3,37 +3,35 @@ return {
   {
     "neovim/nvim-lspconfig",
     init = function()
-      local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-      })
-
-      lspconfig.pyright.setup({
-        capabilities = capabilities,
-      })
-
-      lspconfig.rust_analyzer.setup({
-        capabilities = capabilities,
-      })
-
-      lspconfig.hls.setup({
-        capabilities = capabilities,
-        settings = {
-          haskell = {
-            formattingProvider = "fourmolu",
+      local configs = {
+        clangd = { capabilities = capabilities },
+        pyright = { capabilities = capabilities },
+        rust_analyzer = { capabilities = capabilities },
+        ts_ls = { capabilities = capabilities },
+        hls = {
+          capabilities = capabilities,
+          filetypes = { 'haskell', 'lhaskell', 'cabal' },
+          settings = {
+            haskell = {
+              formattingProvider = "ormolu",
+              plugin = {
+                rename = { config = { crossModule = true }},
+              },
+            },
           },
         },
-      })
+        tinymist = { capabilities = capabilities },
+        ocamllsp = { capabilities = capabilities },
+        gdscript = { capabilities = capabilities },
+        zls = { capabilities = capabilities },
+      }
 
-      lspconfig.tinymist.setup({
-          capabilities = capabilities,
-      })
-
-      lspconfig.ocamllsp.setup({
-          capabilities = capabilities,
-      })
+      for server, config in pairs(configs) do
+        vim.lsp.config(server, config)
+        vim.lsp.enable(server)
+      end
     end
   },
   {
