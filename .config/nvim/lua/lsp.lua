@@ -1,15 +1,13 @@
 return {
- --  	use "neovim/nvim-lspconfig"
   {
     "neovim/nvim-lspconfig",
     init = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local configs = {
-        clangd = { capabilities = capabilities },
-        pyright = { capabilities = capabilities },
-        rust_analyzer = { capabilities = capabilities },
-        ts_ls = { capabilities = capabilities },
+        clangd = {},
+        pyright = {},
+        rust_analyzer = {},
+        ts_ls = {},
         hls = {
           capabilities = capabilities,
           filetypes = { 'haskell', 'lhaskell', 'cabal' },
@@ -22,14 +20,14 @@ return {
             },
           },
         },
-        tinymist = { capabilities = capabilities },
-        ocamllsp = { capabilities = capabilities },
-        gdscript = { capabilities = capabilities },
-        zls = { capabilities = capabilities },
+        tinymist = {},
+        ocamllsp = {},
+        gdscript = {},
+        zls = {},
       }
 
       for server, config in pairs(configs) do
-        vim.lsp.config(server, config)
+        -- vim.lsp.config(server, config)
         vim.lsp.enable(server)
       end
     end

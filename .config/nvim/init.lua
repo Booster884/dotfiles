@@ -24,6 +24,12 @@ vim.opt.splitright = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
 
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+vim.opt.foldtext = ""
+vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo[0][0].foldmethod = "expr"
+
 two_space_indent_fes = {
   "lua",
   "nix",

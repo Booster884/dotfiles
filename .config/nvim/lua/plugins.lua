@@ -78,41 +78,41 @@ return {
   "kaarmu/typst.vim",
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     config = function ()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "markdown",
-          "html",
-          "css",
-          "javascript",
-          "python",
-          "toml",
-          "json",
-          "lua",
-          "bash",
-          "comment",
-          "c",
-          "lua",
-          "rust",
-          "nix",
-          "haskell",
-          "typst",
-          "gdscript",
-        },
-        highlight = {
-          enable = true
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = '<CR>',
-            scope_incremental = '<CR>',
-            node_incremental = '<TAB>',
-            node_decremental = '<S-TAB>',
-          },
-        },
-      })
+      ts = require("nvim-treesitter")
+      filetypes = {
+        "markdown",
+        "html",
+        "css",
+        "javascript",
+        "python",
+        "toml",
+        "json",
+        "lua",
+        "bash",
+        "comment",
+        "c",
+        "cpp",
+        "lua",
+        "rust",
+        "nix",
+        "haskell",
+        "typst",
+        "gdscript",
+      }
+      ts.install(filetypes)
+
+      for _, ft in ipairs(filetypes) do
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = { ft },
+          callback = function ()
+            vim.treesitter.start()
+          end,
+        })
+      end
     end,
   },
   {
