@@ -1,3 +1,6 @@
+source $ZDOTDIR/antidote/antidote.zsh
+antidote load
+
 if [[ -n "$IN_NIX_SHELL" ]]; then
     nixlabel='%F{cyan}*%f '
 fi
@@ -49,7 +52,7 @@ alias pdb="py -m pdb"
 alias pypy="pypy3"
 alias vim="nvim"
 alias emacs="emacs -nw"
-alias ns="nix-shell --run zsh"
+alias ns="nix-shell"
 alias se="sudoedit"
 alias fzfe="fzf | xargs $EDITOR"
 

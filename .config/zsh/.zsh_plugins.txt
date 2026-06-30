@@ -1,0 +1,3 @@
+chisui/zsh-nix-shell
+
+# zdharma-continuum/fast-syntax-highlighting
