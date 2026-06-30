@@ -15,7 +15,7 @@ return {
       direction = "horizontal",
       hide_numbers = true,
       shade_terminals = true,
-      shading_factor = 1,
+      -- shading_factor = 1,
     },
     init = function()
       -- Cursed (?) setup for lazygit window
@@ -63,7 +63,6 @@ return {
   "sindrets/diffview.nvim",
   { "lewis6991/gitsigns.nvim", opts = {} },
   -- { "lukas-reineke/indent-blankline.nvim", main = 'ibl', opts = {} },
-  { "numToStr/Comment.nvim", opts = {} },
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",

@@ -58,7 +58,7 @@ alias fzfe="fzf | xargs $EDITOR"
 
 alias du="du -sh"
 alias df="df -h"
-alias ls="eza --group-directories-first"
+alias ls="eza -g --group-directories-first"
 alias diff="delta"
 alias make="make -j $(nproc)"
 

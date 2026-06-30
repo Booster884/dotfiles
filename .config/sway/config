@@ -13,6 +13,7 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $wallpaper ~/media/wallpapers/martinaise.jpg
 
 set $primary_display DP-3
 set $secondary_display DP-2
@@ -27,10 +28,13 @@ gaps outer 0
 
 ### Output configuration
 #
-# output * bg ~/ fill
+output * bg $wallpaper fill
 
 output $primary_display resolution 1920x1080@60Hz position 1920 0
 output $secondary_display resolution 1920x1080@60Hz position 0 0
+
+output "DP-9" resolution 1920x1080@60Hz position 0 0
+output "DP-10" resolution 1920x1080@60Hz position 1920 0
 
 output eDP-1 resolution 2256x1504 scale 1.5 position 208 1080
 output DP-4 resolution 1920x1080@60Hz position 0 0
@@ -50,7 +54,7 @@ seat seat0 xcursor_theme $xcursor_theme $xcursor_size
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-set $lock swaylock -f -c 121212 -i ~/wallpaper
+set $lock swaylock -f -c 121212 -i $wallpaper
 
 exec swayidle -w \
     timeout 300 $lock \
@@ -207,7 +211,9 @@ input "2385:5854:Kingston_HyperX_Pulsefire_Core" {
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
+    # bindsym $mod+s layout stacking
+    # Hack?
+    bindsym $mod+s output "eDP-1" toggle
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
@@ -260,7 +266,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # assign [title="bite"] workspace number 3
-for_window [title="Bitwarden"] floating enable
+# for_window [title="Bitwarden"] floating enable
 
 #
 # Status Bar:
